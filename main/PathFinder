@@ -1,0 +1,98 @@
+local module = {
+	PlaceWayPoints = false,
+	Humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"),
+	WaitPerWaypoint = 0.035,
+}
+local PathFinder = game:GetService("PathfindingService")
+local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid") or module.Humanoid
+local WayPointTable = {}
+local AbleToPath = true
+function createParts(pos:Vector3)
+	local part = Instance.new("Part",game.Workspace)
+	part.Size = Vector3.new(0.5,0.5,0.5)
+	part.Material = Enum.Material.Neon
+	part.Shape = Enum.PartType.Ball
+	part.Position = pos
+	part.Name = "WayPointPart"
+	part.Anchored = true
+	part.CanCollide = false
+end
+function module:ClearWayPoints()
+	table.clear(WayPointTable)
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "WayPointPart" then
+			v:Destroy()
+		end
+	end
+end
+function module:stopPath()
+	AbleToPath = false
+	module:ClearWayPoints()
+end
+function Path(vector3:Vector3)
+	local path = PathFinder:CreatePath({
+		["AgentCanClimb"] = true,
+		["AgentCanJump"] = true,
+		["Costs"] = {
+			Water = 20
+		}
+	})
+
+	path:ComputeAsync(Humanoid.RootPart.Position,vector3)
+	local waypoints = path:GetWaypoints()
+	if path.Status == Enum.PathStatus.Success then
+		AbleToPath = true
+		if Humanoid.Health == 0 then
+			ClearWayPoints()
+		end
+		for i,waypoint in pairs(waypoints) do
+			if waypoint then
+				createParts(waypoint.Position)
+				table.insert(WayPointTable,waypoint)
+			else
+				continue
+			end
+		end
+		for i,waypoint in pairs(WayPointTable) do
+			if waypoint then
+				if waypoint.Action == Enum.PathWaypointAction.Jump then
+					Humanoid.Jump = true
+				end
+
+				Humanoid:MoveTo(waypoint.Position)
+				if waypoint.Action == Enum.PathWaypointAction.Jump then
+					Humanoid.Jump = true
+				end
+				Humanoid.MoveToFinished:Wait(2)
+				if waypoint.Action == Enum.PathWaypointAction.Jump then
+					Humanoid.Jump = true
+				end
+				if AbleToPath == false then
+					break
+				end
+				wait(0.035)
+				continue
+
+			else
+				continue
+			end
+		end
+		return path
+	else
+		print('path unsuccessful')
+	end
+
+end
+function module:Walk(Pos)
+	spawn(function()
+		local a = Path(Pos)
+
+		if (Humanoid.RootPart.Position-Pos).Magnitude > 5 then
+			repeat module:stopPath() Path(Pos) until (Humanoid.RootPart.Position-game.Workspace.EndPart.Position).Magnitude < 5
+
+		end
+
+	end)
+
+end
+return module
