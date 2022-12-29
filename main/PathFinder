@@ -76,12 +76,13 @@ function Path(vector3:Vector3)
 			else
 				continue
 			end
+
 		end
 		return path
 	else
 		print('path unsuccessful')
 	end
-
+    module:ClearWayPoints()
 end
 function module:Walk(Pos)
 	spawn(function()
@@ -105,7 +106,7 @@ function module:Test()
     module:Walk(module.Humanoid.RootPart.Position + Vector3.new(10,0,10))
 end
 --[[
-local pathfinder = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
-pathfinder:Test()
+local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
+module:Walk(module.Humanoid.RootPart.Position + Vector3.new(50,0,50))
 --]]
 return module
