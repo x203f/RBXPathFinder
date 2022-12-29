@@ -90,7 +90,7 @@ function module:WalkAsync(Pos)
 		local a = Path(Pos)
 
 		if (Humanoid.RootPart.Position-Pos).Magnitude > 5 then
-			repeat module:stopPath() Path(Pos) until (Humanoid.RootPart.Position-game.Workspace.EndPart.Position).Magnitude < 5
+			repeat module:stopPath() Path(Pos) until (Humanoid.RootPart.Position-Pos).Magnitude < 5
 
 		end
 
@@ -102,7 +102,7 @@ function module:Walk(Pos)
 	local a = Path(Pos)
 
 	if (Humanoid.RootPart.Position-Pos).Magnitude > 5 then
-		repeat module:stopPath() Path(Pos) until (Humanoid.RootPart.Position-game.Workspace.EndPart.Position).Magnitude < 5
+		repeat module:stopPath() Path(Pos) until (Humanoid.RootPart.Position-Pos).Magnitude < 5
 
 	end
 
