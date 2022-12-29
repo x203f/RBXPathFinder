@@ -47,7 +47,9 @@ function Path(vector3:Vector3)
 		end
 		for i,waypoint in pairs(waypoints) do
 			if waypoint then
-				createParts(waypoint.Position)
+			    if module.PlaceWayPoints == true then
+				    createParts(waypoint.Position)
+				end
 				table.insert(WayPointTable,waypoint)
 			else
 				continue
@@ -124,6 +126,7 @@ for i,v in pairs(game.Players:GetPlayers()) do
     module:Walk(module.Humanoid.RootPart.Position + Vector3.new(v.Character.Humanoid.RootPart.Position.X,0,v.Character.Humanoid.RootPart.Position.Z))
 end
 
-
+local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
+module:Walk(module.Humanoid.RootPart.Position + Vector3.new(math.random(-50,100),0,math.random(-50,100)))
 --]]
 return module
