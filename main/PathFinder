@@ -97,7 +97,7 @@ function module:Walk(Pos)
 end
 function module:TestForAbility2()
     print("Successfully loaded 2")
-    print("ARGS: PlaceWayPoints: "..module.PlaceWayPoints.." Humanoid: "..module.Humanoid:GetFullName().." WaitPerWaypoint"..module.WaitPerWaypoint.."s")
+    print("ARGS: PlaceWayPoints: ",module.PlaceWayPoints," Humanoid: ",module.Humanoid:GetFullName()," WaitPerWaypoint",module.WaitPerWaypoint,"s All functions and module table length: ",table.getn(module))
 end
 --[[
 local pathfinder = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
