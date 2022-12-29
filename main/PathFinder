@@ -99,8 +99,13 @@ function module:TestForAbility2()
     print("Successfully loaded 3443")
     print("ARGS: PlaceWayPoints: "..tostring(module.PlaceWayPoints).." Humanoid: "..tostring(module.Humanoid:GetFullName()).." WaitPerWaypoint"..tostring(module.WaitPerWaypoint).."s All functions and module table length: "..tostring(table.getn(module)))
 end
+function module:Test()
+    module:TestForAbility2()
+    print("Successfully loaded path")
+    Walk(module.Humanoid.RootPart.Position + Vector3.new(10,0,10))
+end
 --[[
 local pathfinder = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
-pathfinder:TestForAbility2()
+pathfinder:Test
 --]]
 return module
