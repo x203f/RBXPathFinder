@@ -101,7 +101,7 @@ function module:Walk(Pos)
 
 	local a = Path(Pos)
 
-	if (Humanoid.RootPart.Position-Pos).Magnitude > 5 then
+	if (Humanoid.RootPart.Position-Pos).Magnitude > 5 and a.Status == Enum.PathStatus.Success then
 		repeat module:stopPath() Path(Pos) until (Humanoid.RootPart.Position-Pos).Magnitude < 5
 
 	end
