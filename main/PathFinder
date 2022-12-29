@@ -96,7 +96,7 @@ function module:Walk(Pos)
 
 end
 function module:TestForAbility2()
-    print("Successfully loaded 2")
+    print("Successfully loaded 333")
     print("ARGS: PlaceWayPoints: ",module.PlaceWayPoints," Humanoid: ",module.Humanoid:GetFullName()," WaitPerWaypoint",module.WaitPerWaypoint,"s All functions and module table length: ",table.getn(module))
 end
 --[[
