@@ -72,7 +72,7 @@ function Path(vector3:Vector3)
 				if AbleToPath == false then
 					break
 				end
-				wait(0.035)
+				wait(module.WaitPerWaypoint)
 				continue
 
 			else
@@ -127,6 +127,8 @@ for i,v in pairs(game.Players:GetPlayers()) do
 end
 
 local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
-module:Walk(module.Humanoid.RootPart.Position + Vector3.new(math.random(-50,100),0,math.random(-50,100)))
+module.PlaceWayPoints = true
+module:Walk(module.Humanoid.RootPart.Position + Vector3.new(-50,0,50))
+
 --]]
 return module
