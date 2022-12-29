@@ -78,11 +78,12 @@ function Path(vector3:Vector3)
 			end
 
 		end
+		module:ClearWayPoints()
 		return path
 	else
 		print('path unsuccessful')
 	end
-    module:ClearWayPoints()
+
 end
 function module:Walk(Pos)
 	spawn(function()
