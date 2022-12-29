@@ -85,7 +85,7 @@ function Path(vector3:Vector3)
 	end
 
 end
-function module:Walk(Pos)
+function module:WalkAsync(Pos)
 	spawn(function()
 		local a = Path(Pos)
 
@@ -95,6 +95,18 @@ function module:Walk(Pos)
 		end
 
 	end)
+
+end
+function module:Walk(Pos)
+
+	local a = Path(Pos)
+
+	if (Humanoid.RootPart.Position-Pos).Magnitude > 5 then
+		repeat module:stopPath() Path(Pos) until (Humanoid.RootPart.Position-game.Workspace.EndPart.Position).Magnitude < 5
+
+	end
+
+
 
 end
 function module:TestForAbility2()
@@ -108,6 +120,8 @@ function module:Test()
 end
 --[[
 local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
-module:Walk(module.Humanoid.RootPart.Position + Vector3.new(50,0,50))
+for i,v in pairs(game.Players:GetPlayers()) do
+    module:Walk(module.Humanoid.RootPart.Position + Vector3.new(v.Character.Humanoid.RootPart.Position.X,0,v.Character.Humanoid.RootPart.Position.Z))
+end
 --]]
 return module
