@@ -106,6 +106,6 @@ function module:Test()
 end
 --[[
 local pathfinder = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
-pathfinder:Test
+pathfinder:Test()
 --]]
 return module
