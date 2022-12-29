@@ -95,4 +95,12 @@ function module:Walk(Pos)
 	end)
 
 end
+function module:TestForAbility()
+    print("Successfully loaded")
+    print("ARGS: PlaceWayPoints: "..module.PlaceWayPoints.." Humanoid: "..module.Humanoid:GetFullName().." WaitPerWaypoint"..module.WaitPerWaypoint.."s All functions and module table: "..module)
+end
+--[[
+local pathfinder = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
+
+--]]
 return module
