@@ -30,6 +30,7 @@ function module:stopPath()
 	module:ClearWayPoints()
 end
 function Path(vector3:Vector3)
+    module:ClearWayPoints()
 	local path = PathFinder:CreatePath({
 		["AgentCanClimb"] = true,
 		["AgentCanJump"] = true,
@@ -128,6 +129,7 @@ end
 
 local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
 module.PlaceWayPoints = true
+module.WaitPerWaypoint = 0
 module:Walk(module.Humanoid.RootPart.Position + Vector3.new(-50,0,50))
 
 --]]
