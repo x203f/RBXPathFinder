@@ -1,10 +1,10 @@
 local module = {
 	PlaceWayPoints = false,
-	Humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"),
+	Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid"),
 	WaitPerWaypoint = 0.035,
 }
 local PathFinder = game:GetService("PathfindingService")
-local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid") or module.Humanoid
+local Humanoid = module.Humanoid
 local WayPointTable = {}
 local AbleToPath = true
 function createParts(pos:Vector3)
@@ -58,6 +58,9 @@ function Path(vector3:Vector3)
 		end
 		for i,waypoint in pairs(WayPointTable) do
 			if waypoint then
+			    if #WayPointTable == 0 then
+			        break
+			    end
 				if waypoint.Action == Enum.PathWaypointAction.Jump then
 					Humanoid.Jump = true
 				end
@@ -77,6 +80,9 @@ function Path(vector3:Vector3)
 				continue
 
 			else
+			    if #WayPointTable == 0 then
+			        break
+			    end
 				continue
 			end
 
@@ -128,7 +134,7 @@ for i,v in pairs(game.Players:GetPlayers()) do
 end
 
 local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/x203f/RBXPathFinder/main/main/PathFinder",true))()
-module.PlaceWayPoints = true
+module.PlaceWayPoints = false
 module.WaitPerWaypoint = 0
 module:Walk(module.Humanoid.RootPart.Position + Vector3.new(-50,0,50))
 
