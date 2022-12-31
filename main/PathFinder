@@ -84,6 +84,7 @@ function Path(vector3:Vector3)
 		module:ClearWayPoints()
 		return path
 	else
+	    module:ClearWayPoints()
 		print('path unsuccessful')
 	end
 
