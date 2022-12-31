@@ -44,7 +44,7 @@ function Path(vector3:Vector3)
 	if path.Status == Enum.PathStatus.Success then
 		AbleToPath = true
 		if Humanoid.Health == 0 then
-			ClearWayPoints()
+			module:ClearWayPoints()
 		end
 		for i,waypoint in pairs(waypoints) do
 			if waypoint then
@@ -87,7 +87,7 @@ function Path(vector3:Vector3)
 	    module:ClearWayPoints()
 		print('path unsuccessful')
 	end
-
+    module:ClearWayPoints()
 end
 function module:WalkAsync(Pos)
 	spawn(function()
