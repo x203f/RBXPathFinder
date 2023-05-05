@@ -7,7 +7,7 @@ local PathFinder = game:GetService("PathfindingService")
 local Humanoid = module.Humanoid
 local WayPointTable = {}
 local AbleToPath = true
-function createParts(pos:Vector3)
+function module:createParts(pos:Vector3)
 	local part = Instance.new("Part",game.Workspace)
 	part.Size = Vector3.new(0.5,0.5,0.5)
 	part.Material = Enum.Material.Neon
@@ -29,7 +29,7 @@ function module:stopPath()
 	AbleToPath = false
 	module:ClearWayPoints()
 end
-function Path(vector3:Vector3)
+function module:Path(vector3:Vector3)
     module:ClearWayPoints()
 	local path = PathFinder:CreatePath({
 		["AgentCanClimb"] = true,
